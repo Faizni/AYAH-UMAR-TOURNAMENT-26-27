@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayah Umar Tournament Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            gold: '#ffd700',
+                            dark: '#0f172a'
+                        }
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gold-text {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .champion-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .champion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(255, 215, 0, 0.3);
+        }
+        
+        /* Background decorations */
+        .bg-blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="antialiased relative">
+
+    <div class="bg-blob w-96 h-96 bg-brand-600 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2 animate-pulse-slow"></div>
+    <div class="bg-blob w-96 h-96 bg-purple-600 rounded-full top-1/3 right-0 translate-x-1/3 animate-pulse-slow" style="animation-delay: 1s;"></div>
+    <div class="bg-blob w-96 h-96 bg-brand-500 rounded-full bottom-0 left-1/4 animate-pulse-slow" style="animation-delay: 2s;"></div>
+
+    <!-- Floating Elements (Soccer ball concept) -->
+    <div class="fixed top-20 right-10 opacity-20 animate-float z-0 pointer-events-none hidden md:block">
+        <i class="fas fa-futbol text-6xl text-white"></i>
+    </div>
+    <div class="fixed bottom-40 left-10 opacity-20 animate-bounce-slow z-0 pointer-events-none hidden md:block">
+        <i class="fas fa-futbol text-4xl text-brand-gold"></i>
+    </div>
+
+    <header class="fixed w-full z-50 glass-panel border-b-0 border-white/10 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-trophy text-brand-gold text-2xl"></i>
+                <span class="font-bold text-xl tracking-wider text-white">AU<span class="text-brand-500">26/27</span></span>
+            </div>
+            <nav class="hidden md:flex gap-6 text-sm font-semibold">
+                <a href="#intro" class="hover:text-brand-gold transition-colors">Utama</a>
+                <a href="#tournaments" class="hover:text-brand-gold transition-colors">Pertandingan</a>
+                <a href="#champions" class="hover:text-brand-gold transition-colors">Juara Bertahan</a>
+                <a href="#register" class="hover:text-brand-gold transition-colors">Daftar</a>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white focus:outline-none" id="mobile-menu-btn">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-brand-dark/95 backdrop-blur-md absolute w-full left-0 border-b border-white/10" id="mobile-menu">
+            <div class="flex flex-col px-4 py-4 space-y-4 text-center font-semibold">
+                <a href="#intro" class="mobile-link text-white hover:text-brand-gold">Utama</a>
+                <a href="#tournaments" class="mobile-link text-white hover:text-brand-gold">Pertandingan</a>
+                <a href="#champions" class="mobile-link text-white hover:text-brand-gold">Juara Bertahan</a>
+                <a href="#register" class="mobile-link text-white hover:text-brand-gold mt-2">Daftar Sekarang</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+        <section id="intro" class="min-h-screen flex items-center justify-center pt-20 pb-10 px-4 relative overflow-hidden">
+            <div class="container mx-auto text-center relative z-10">
+                <div class="inline-block mb-4 px-4 py-1 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-500 text-sm font-semibold animate-pulse">
+                    Musim 2026/2027 Kini Dibuka!
+                </div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+                    Selamat Datang ke <br>
+                    <span class="gold-text drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]">Ayah Umar Tournament</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                    <strong class="text-white">Daftar satu nama, dapat join 5 jenis pertandingan serentak!</strong>
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#tournaments" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full font-bold text-lg transition-all backdrop-blur-sm">
+                        Teroka Pertandingan <i class="fas fa-arrow-down ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="info" class="py-16 px-4">
+            <div class="container mx-auto max-w-5xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Struktur <span class="text-brand-500">Kejohanan</span></h2>
+                    <p class="text-gray-400">Penerangan ringkas format dan perjalanan setiap piala.</p>
+                </div>
+                
+                <div class="glass-panel p-2 md:p-6 rounded-2xl md:rounded-3xl shadow-2xl relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-brand-dark/80 z-10 pointer-events-none md:hidden"></div>
+                    <img src="ChatGPT Image Jul 24, 2026, 10_23_59 AM.png" alt="Info Tournament Ayah Umar" class="w-full h-auto rounded-xl object-contain shadow-lg" onerror="this.src='https://placehold.co/800x1200/1e293b/ffffff?text=Poster+Infografik+Tournament'">
+                    <div class="absolute bottom-4 left-0 w-full text-center z-20 md:hidden">
+                        <span class="text-xs bg-black/60 px-3 py-1 rounded-full backdrop-blur-sm"><i class="fas fa-search-plus mr-1"></i> Zoom untuk baca</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tournaments" class="py-20 px-4 bg-black/20">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4">5 Piala, <span class="gold-text">1 Legasi</span></h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Kenali 5 jenis pertandingan yang anda akan sertai dan lihat barisan juara bertahan yang perlu anda tewaskan musim ini.</p>
+                </div>
+
+                <div class="space-y-24" id="champions">
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                        <div class="w-full md:w-1/2 order-2 md:order-1">
+                            <div class="relative champion-card rounded-2xl overflow-hidden border border-white/10">
+                                <div class="absolute top-0 right-0 bg-brand-gold text-black font-bold px-4 py-1 rounded-bl-xl z-20 shadow-md">
+                                    Juara Bertahan
+                                </div>
+                                <img src="ChatGPT Image Jul 24, 2026, 02_58_02 PM.png" alt="Aishah Mohd Shukuri" class="w-full object-cover aspect-[3/4]" onerror="this.src='https://placehold.co/600x800/1e293b/ffffff?text=Aishah+Mohd+Shukuri'">
+                                <div class="absolute bottom-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-20">
+                                    <h4 class="text-2xl md:text-3xl font-bold gold-text">AISHAH MOHD SHUKURI</h4>
+                                    <p class="text-gray-300 font-semibold tracking-wide">LONG PASIA FC</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2 order-1 md:order-2 space-y-6">
+                            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-purple-500/20 text-purple-400 mb-2">
+                                <i class="fas fa-crown text-3xl"></i>
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-bold">Ayah Umar <span class="text-purple-400">League</span></h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Pertandingan liga utama. Pemenang diambil berdasarkan kedudukan liga pada akhir Gameweek 38. Konsistensi adalah kunci kejuaraan.
+                            </p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li><i class="fas fa-check-circle text-brand-500 mr-2"></i> Bermula Gameweek 1-38</li>
+                                <li><i class="fas fa-check-circle text-brand-500 mr-2"></i> Top 4 auto qualify ke Ayah Umar Cup musim depan</li>
+                                <li><i class="fas fa-times-circle text-red-500 mr-2"></i> Bottom 3 disingkirkan musim seterusnya</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                        <div class="w-full md:w-1/2 order-1 space-y-6 md:text-right">
+                            <div class="md:ml-auto inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-500/20 text-blue-400 mb-2">
+                                <i class="fas fa-people-arrows text-3xl"></i>
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-bold">Ayah Umar <span class="text-blue-400">H2H</span></h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Pertarungan bersemuka setiap minggu. Menang, kalah atau seri menentukan mata anda. Pemenang keseluruhan berdasarkan kedudukan liga H2H akhir.
+                            </p>
+                            <ul class="space-y-2 text-sm text-gray-400 md:flex md:flex-col md:items-end">
+                                <li>Bermula Gameweek 1-38 <i class="fas fa-check-circle text-brand-500 ml-2"></i></li>
+                                <li>Format Head-to-Head Klasik <i class="fas fa-check-circle text-brand-500 ml-2"></i></li>
+                            </ul>
+                        </div>
+                        <div class="w-full md:w-1/2 order-2">
+                            <div class="relative champion-card rounded-2xl overflow-hidden border border-white/10">
+                                <div class="absolute top-0 right-0 bg-brand-gold text-black font-bold px-4 py-1 rounded-bl-xl z-20 shadow-md">
+                                    Juara Bertahan
+                                </div>
+                                <img src="ChatGPT Image Jul 24, 2026, 02_57_54 PM.png" alt="Gary Clement" class="w-full object-cover aspect-[3/4]" onerror="this.src='https://placehold.co/600x800/1e293b/ffffff?text=Gary+Clement'">
+                                <div class="absolute bottom-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-20 text-left">
+                                    <h4 class="text-2xl md:text-3xl font-bold gold-text">GARY CLEMENT</h4>
+                                    <p class="text-gray-300 font-semibold tracking-wide">BATU KAWA FC</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                        <div class="w-full md:w-1/2 order-2 md:order-1">
+                            <div class="relative champion-card rounded-2xl overflow-hidden border border-white/10">
+                                <div class="absolute top-0 right-0 bg-brand-gold text-black font-bold px-4 py-1 rounded-bl-xl z-20 shadow-md">
+                                    Juara Bertahan
+                                </div>
+                                <img src="ChatGPT Image Jul 24, 2026, 03_01_27 PM.png" alt="Nor Helmy" class="w-full object-cover aspect-[3/4]" onerror="this.src='https://placehold.co/600x800/1e293b/ffffff?text=Nor+Helmy'">
+                                <div class="absolute bottom-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-20">
+                                    <h4 class="text-2xl md:text-3xl font-bold gold-text">NOR HELMY</h4>
+                                    <p class="text-gray-300 font-semibold tracking-wide">PULAU SERAI FC</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2 order-1 md:order-2 space-y-6">
+                            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-green-500/20 text-green-400 mb-2">
+                                <i class="fas fa-trophy text-3xl"></i>
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-bold">Ayah Umar <span class="text-green-400">FA Cup</span></h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Pertandingan piala berformat kalah mati secara bulanan. Undian perlawanan ditetapkan berdasarkan kedudukan liga pada hujung Ogos.
+                            </p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li><i class="fas fa-calendar-alt text-brand-500 mr-2"></i> Bermula September</li>
+                                <li><i class="fas fa-exclamation-triangle text-brand-500 mr-2"></i> Hits dikira, chip tidak dikira</li>
+                                <li><i class="fas fa-sitemap text-brand-500 mr-2"></i> Format Round 64 hingga Final</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                         <div class="w-full md:w-1/2 order-1 space-y-6 md:text-right">
+                            <div class="md:ml-auto inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-500/20 text-indigo-400 mb-2">
+                                <i class="fas fa-star text-3xl"></i>
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-bold">Ayah Umar <span class="text-indigo-400">Cup</span></h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Berformatkan UEFA Champions League. Bermula selepas pertengahan musim. Hanya yang terbaik layak berentap merebut piala berprestij ini.
+                            </p>
+                            <ul class="space-y-2 text-sm text-gray-400 md:flex md:flex-col md:items-end">
+                                <li>Bermula Selepas Mid Season (GW20) <i class="fas fa-clock text-brand-500 ml-2"></i></li>
+                                <li>Best 40 manager layak bertanding <i class="fas fa-users text-brand-500 ml-2"></i></li>
+                                <li>Hits dikira, chip tidak dikira <i class="fas fa-exclamation-triangle text-brand-500 ml-2"></i></li>
+                            </ul>
+                        </div>
+                        <div class="w-full md:w-1/2 order-2">
+                            <div class="relative champion-card rounded-2xl overflow-hidden border border-white/10">
+                                <div class="absolute top-0 right-0 bg-brand-gold text-black font-bold px-4 py-1 rounded-bl-xl z-20 shadow-md">
+                                    Juara Bertahan
+                                </div>
+                                <img src="ChatGPT Image Jul 24, 2026, 03_05_11 PM.png" alt="Nizar Sabri" class="w-full object-cover aspect-[3/4]" onerror="this.src='https://placehold.co/600x800/1e293b/ffffff?text=Nizar+Sabri'">
+                                <div class="absolute bottom-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-20 text-left">
+                                    <h4 class="text-2xl md:text-3xl font-bold gold-text">NIZAR SABRI</h4>
+                                    <p class="text-gray-300 font-semibold tracking-wide">SIMPANG AMPAT FC</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                        <div class="w-full md:w-1/2 order-2 md:order-1">
+                            <div class="relative champion-card rounded-2xl overflow-hidden border border-white/10">
+                                <div class="absolute top-0 right-0 bg-brand-gold text-black font-bold px-4 py-1 rounded-bl-xl z-20 shadow-md">
+                                    Juara Bertahan
+                                </div>
+                                <img src="ChatGPT Image Jul 24, 2026, 03_09_05 PM.png" alt="Nurul Iman" class="w-full object-cover aspect-[3/4]" onerror="this.src='https://placehold.co/600x800/1e293b/ffffff?text=Nurul+Iman'">
+                                <div class="absolute bottom-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-20">
+                                    <h4 class="text-2xl md:text-3xl font-bold gold-text">NURUL IMAN</h4>
+                                    <p class="text-gray-300 font-semibold tracking-wide">TANJUNG KARANG FC</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/2 order-1 md:order-2 space-y-6">
+                            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-red-500/20 text-red-400 mb-2">
+                                <i class="fas fa-skull text-3xl"></i>
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-bold">Ayah Umar <span class="text-red-500">Royal Rumble</span></h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Berkonsepkan "Sudden Death" atau "Last Man Standing". Satu-satunya format yang tiada belas kasihan. Siapa yang kekal hingga akhir, dia juara.
+                            </p>
+                            <ul class="space-y-2 text-sm text-gray-400">
+                                <li><i class="fas fa-play text-brand-500 mr-2"></i> Bermula Gameweek 2-38</li>
+                                <li><i class="fas fa-user-minus text-brand-500 mr-2"></i> Markah terendah setiap GW disingkirkan</li>
+                                <li><i class="fas fa-exclamation-triangle text-brand-500 mr-2"></i> Hits dikira, chip tidak dikira</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="register" class="py-20 px-4 relative">
+            <div class="absolute inset-0 bg-brand-900/40 -z-10"></div>
+            <div class="container mx-auto max-w-4xl text-center">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Langkah <span class="text-brand-500">Pendaftaran</span></h2>
+                <p class="text-gray-300 mb-12">Ikuti 2 langkah mudah di bawah untuk menyertai Ayah Umar Tournament musim ini.</p>
+
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    
+                    <!-- Step 1 -->
+                    <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-500/10 rounded-bl-full -z-10 group-hover:bg-brand-500/20 transition-colors"></div>
+                        <div class="text-brand-500 font-black text-6xl opacity-20 absolute top-4 right-6 pointer-events-none">1</div>
+                        
+                        <h3 class="text-2xl font-bold mb-4 flex items-center">
+                            <span class="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center mr-3 text-lg">1</span>
+                            Isi Borang
+                        </h3>
+                        <p class="text-gray-300 mb-6">
+                            Sila lengkapkan butiran anda di pautan Google Form yang disediakan. Pastikan maklumat tepat. <strong>Sila screenshot pengesahan</strong> setelah selesai.
+                        </p>
+                        <a href="https://forms.gle/MmpqMMVi9rtfhEPd6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-white text-brand-900 font-bold py-3 px-6 rounded-xl hover:bg-brand-50 transition-colors">
+                            Buka Borang Pendaftaran <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="glass-panel p-8 rounded-3xl relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-bl-full -z-10 group-hover:bg-green-500/20 transition-colors"></div>
+                        <div class="text-green-500 font-black text-6xl opacity-20 absolute top-4 right-6 pointer-events-none">2</div>
+                        
+                        <h3 class="text-2xl font-bold mb-4 flex items-center">
+                            <span class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center mr-3 text-lg">2</span>
+                            Dapatkan Kod
+                        </h3>
+                        <p class="text-gray-300 mb-6">
+                            Setelah selesai Step 1, hubungi admin melalui WhatsApp beserta screenshot untuk mendapatkan kod liga penyertaan.
+                        </p>
+                        <div class="space-y-3">
+                            <a href="https://wa.me/60194245054" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between w-full bg-[#25D366]/20 hover:bg-[#25D366]/30 border border-[#25D366]/50 py-3 px-4 rounded-xl transition-colors">
+                                <div>
+                                    <span class="block text-white font-semibold">Admin Nizar</span>
+                                    <span class="text-sm text-gray-400">019-4245054</span>
+                                </div>
+                                <i class="fab fa-whatsapp text-2xl text-[#25D366]"></i>
+                            </a>
+                            <a href="https://wa.me/60195690023" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between w-full bg-[#25D366]/20 hover:bg-[#25D366]/30 border border-[#25D366]/50 py-3 px-4 rounded-xl transition-colors">
+                                <div>
+                                    <span class="block text-white font-semibold">Admin Izham</span>
+                                    <span class="text-sm text-gray-400">019-5690023</span>
+                                </div>
+                                <i class="fab fa-whatsapp text-2xl text-[#25D366]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black/50 py-8 border-t border-white/10 mt-10">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <i class="fas fa-trophy text-brand-gold"></i>
+                <span class="font-bold text-lg text-white">Ayah Umar Tournament</span>
+            </div>
+            <p class="text-gray-500 text-sm">
+                &copy; <span id="year"></span> Ayah Umar Tournament. Hak Cipta Terpelihara.
+            </p>
+            <p class="text-gray-600 text-xs mt-2">Satu Komuniti, Satu Semangat!</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Mobile menu toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const links = document.querySelectorAll('.mobile-link');
+            const icon = btn.querySelector('i');
+
+            function toggleMenu() {
+                menu.classList.toggle('hidden');
+                if (menu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            }
+
+            btn.addEventListener('click', toggleMenu);
+
+            // Close mobile menu when a link is clicked
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!menu.classList.contains('hidden')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-brand-dark/90', 'backdrop-blur-md', 'shadow-lg');
+                    navbar.classList.remove('glass-panel');
+                } else {
+                    navbar.classList.remove('bg-brand-dark/90', 'backdrop-blur-md', 'shadow-lg');
+                    navbar.classList.add('glass-panel');
+                }
+            });
+
+            // Simple intersection observer for fade-in animations on scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Add animation classes to elements initially
+            const animateElements = document.querySelectorAll('.champion-card, section h2, section h3, .glass-panel');
+            animateElements.forEach(el => {
+                // Skip navbar glass-panel
+                if(el.tagName.toLowerCase() !== 'header') {
+                    el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                    observer.observe(el);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
