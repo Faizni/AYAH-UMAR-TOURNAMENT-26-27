@@ -1,0 +1,37 @@
+﻿body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gold-text {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .champion-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .champion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(255, 215, 0, 0.3);
+        }
+        
+        /* Background decorations */
+        .bg-blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
